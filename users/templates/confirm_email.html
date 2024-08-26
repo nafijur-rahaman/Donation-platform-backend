@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Verification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+        h3 {
+            color: #333333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555555;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Thanks for creating an account on our Donation Platform.</h3>
+        <p>Click the link below to verify your account:</p>
+        <p>
+            Confirmation Link: <a href="{{ confirm_link }}" target="_blank">{{ confirm_link }}</a>
+        </p>
+    </div>
+</body>
+</html>
+

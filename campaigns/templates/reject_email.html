@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Application Rejection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 0;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            font-size: 16px;
+            color: #333;
+        }
+        .email-header {
+            background-color: #dc3545;
+            color: #ffffff;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            font-size: 24px;
+        }
+        .email-content {
+            margin: 20px 0;
+        }
+        .email-content .name {
+            font-weight: bold;
+        }
+        .email-footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888888;
+            font-size: 14px;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Application Rejected</h1>
+        </div>
+        <div class="email-content">
+            <p>Dear <span class="name">{{ user.get_full_name }}</span>,</p>
+            <p>Thank you for your interest in becoming a creator on our platform. After careful consideration, we regret to inform you that we are unable to approve your application at this time.</p>
+            <p>We encourage you to apply again in the future. If you have any questions or would like feedback on your application, please feel free to reach out to us.</p>
+            <p>Best regards,<br>Donation platform</p>
+        </div>
+        <div class="email-footer">
+            <p>&copy; {{ current_year }} Your Company. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

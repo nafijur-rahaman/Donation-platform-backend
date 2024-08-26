@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #007bff;
+        }
+        .content {
+            margin-bottom: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Donation Confirmation</h1>
+        </div>
+        <div class="content">
+            <p>Dear {{ donor_username }},</p>
+            <p>Thank you for your generous donation of ${{ donation_amount }} to the campaign "<strong>{{ campaign_title }}</strong>".</p>
+            <p>Your donation has been successfully confirmed. We appreciate your support!</p>
+            <p>Best regards,</p>
+            <p>The Donation Platform Team</p>
+        </div>
+        <div class="footer">
+            <p>&copy; {{ current_year }} Donation Platform. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
