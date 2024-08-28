@@ -13,11 +13,11 @@ class DonationView(viewsets.ModelViewSet):
     serializer_class=DonationSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     
-    def perform_create(self, serializer):
-        serializer.save(donor=self.request.user)
+    
 
 
 class ConfirmDonationView(APIView):
+    serializer_class=DonationSerializer
     permission_classes=[IsAuthenticated]
     
     def post(self,request,donation_id):

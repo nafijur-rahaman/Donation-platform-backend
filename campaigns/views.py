@@ -15,7 +15,7 @@ class CampaignView(viewsets.ModelViewSet):
     queryset=Campaigns.objects.all()
     serializer_class=CampaignSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields=['type','status']
+    filterset_fields=['type','status','creator']
     ordering_fields = ['status'] 
     permission_classes=[IsAuthenticatedOrReadOnly]
     

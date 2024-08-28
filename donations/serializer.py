@@ -9,7 +9,7 @@ class DonationSerializer(serializers.ModelSerializer):
         fields="__all__"
     
     def get_donor_name(self,obj):
-        return obj.campaigns.creator.username
+        return f"{obj.campaigns.creator.user.first_name} {obj.campaigns.creator.user.last_name}"
     
     def get_campaigns_title(self,obj):
         return obj.campaigns.title

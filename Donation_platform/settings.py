@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'campaigns',
     'donations',
     'users',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -164,6 +165,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# sslcomerz setup
+
+# settings.py
+SSL_COMMERZ_STORE_ID = 'donat66cde4ca58cbb'
+SSL_COMMERZ_STORE_PASSWORD = 'donat66cde4ca58cbb@ssl'
+SSL_COMMERZ_SESSION_API = 'https://sandbox.sslcommerz.com/gwprocess/v3/api.php'
+SSL_COMMERZ_VALIDATION_API = 'https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?wsdl'
+SSL_COMMERZ_TEST_MODE = True  # Set to False when going live
 
 # email setup
 
