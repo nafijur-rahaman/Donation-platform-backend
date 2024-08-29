@@ -49,9 +49,8 @@ INSTALLED_APPS = [
     #custom apps
  
     'campaigns',
-    'donations',
     'users',
-    'order',
+    'transactions',
 ]
 
 MIDDLEWARE = [
@@ -115,8 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#onrender csrf permission
-CSRF_TRUSTED_ORIGINS = ['https://tuition-media-platform-backend.onrender.com','https://*.127.0.0.1',"https://ephemeral-travesseiro-09f998.netlify.app",]
+
 
 # rest framework configurations
 REST_FRAMEWORK = {
@@ -133,6 +131,14 @@ REST_FRAMEWORK = {
   
 }
 
+
+
+#onrender csrf permission
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:5500",
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+]
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",  # Your frontend URL
     "https://your-production-url.com",
@@ -144,6 +150,10 @@ CORS_ALLOW_HEADERS = [
     'origin',
     'x-csrftoken',
 ]
+
+
+CORS_ALLOW_CREDENTIALS = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
