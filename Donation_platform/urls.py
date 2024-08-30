@@ -8,6 +8,8 @@ urlpatterns = [
     path('api/users/',include("users.urls")),
     path('api/campaign/',include("campaigns.urls")),
     path("api/transactions/",include("transactions.urls")),
+    path("api/notification/",include("notification.urls")),
+    path("api/manager/",include("manager.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

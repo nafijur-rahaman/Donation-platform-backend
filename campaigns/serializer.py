@@ -13,13 +13,21 @@ class CreatorRequestSerializer(serializers.ModelSerializer):
         fields = '__all__'
                
 class CampaignSerializer(serializers.ModelSerializer):
+    creator_name = serializers.SerializerMethodField()
+
     class Meta:
-        model=Campaigns
-        fields='__all__'
-        
-    creator_name=serializers.SerializerMethodField()
+        model = Campaigns
+        fields = '__all__'
+        read_only_fields = ('creator',)  # Make the creator field read-only
+
     def get_creator_name(self, obj):
         return f"{obj.creator.user.first_name} {obj.creator.user.last_name}"
+
+    def update(self, instance, validated_data):
+        # Remove the creator from the validated data to prevent updates
+        validated_data.pop('creator', None)
+        return super().update(instance, validated_data)
+
 
     
 class ReviewSerializer(serializers.ModelSerializer):

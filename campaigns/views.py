@@ -1,5 +1,5 @@
 from django.utils import timezone
-from django.db.models import Case, When, Value, CharField
+from django.db.models import Case, When, Value, CharField,IntegerField
 from rest_framework.filters import OrderingFilter
 from .models import Campaigns,Review,Creator,CreatorRequest
 from .serializer import CampaignSerializer,ReviewSerializer,CreatorSerializer,CreatorRequestSerializer
@@ -9,26 +9,26 @@ from django.template.loader import render_to_string
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.exceptions import ValidationError
 # Create your views here.
 
 class CampaignView(viewsets.ModelViewSet):
-    queryset=Campaigns.objects.all()
-    serializer_class=CampaignSerializer
+    queryset = Campaigns.objects.all()
+    serializer_class = CampaignSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields=['type','status','creator']
-    ordering_fields = ['status'] 
-    permission_classes=[IsAuthenticatedOrReadOnly]
+    filterset_fields = ['type', 'status', 'creator']
+    ordering_fields = ['status']
+    permission_classes = [IsAuthenticatedOrReadOnly]
     
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.order_by(
-            Case(
-                When(status='active', then=Value(1)),
-                When(status='completed', then=Value(2)),
-                When(status='cancelled', then=Value(3)),
-                output_field=CharField(),
-            )
-        ) 
+    def perform_create(self, serializer):
+        user = self.request.user
+        try:
+            creator = Creator.objects.get(user=user)
+        except Creator.DoesNotExist:
+            raise ValidationError("Creator profile not found for the current user.")
+        
+        serializer.save(creator=creator)
+
     
         
 class ReviewView(viewsets.ModelViewSet):
