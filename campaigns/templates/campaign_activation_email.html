@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content p {
+            margin: 0 0 10px;
+            line-height: 1.6;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #666666;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+    <title>Campaign Activation Confirmation</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Congratulations, {{ user.first_name }} {{user.last_name}}!</h1>
+        </div>
+        <div class="content">
+            <p>We are thrilled to inform you that your campaign, <strong>{{ campaign.title }}</strong>, has been reviewed and is now officially active on our platform.</p>
+            <p>Thank you for your trust and commitment. We wish you great success in achieving your fundraising goals.</p>
+            <p>If you have any questions or need further assistance, feel free to contact our support team.</p>
+        </div>
+        <div class="footer">
+            <p>Best regards,<br>Donation Platform<br><a href="mailto:support@donationplatform.com">support@donationplatform.com</a></p>
+        </div>
+    </div>
+</body>
+</html>

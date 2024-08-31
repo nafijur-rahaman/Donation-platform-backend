@@ -12,7 +12,7 @@ class Order(models.Model):
         ('cancelled', 'Cancelled'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
     campaign = models.ForeignKey(Campaigns, on_delete=models.CASCADE)  # Link to the Campaign
     amount = models.DecimalField(max_digits=10, decimal_places=2)  # Amount in BDT
     payment_status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('completed', 'Completed'), ('failed', 'Failed')], default='pending')

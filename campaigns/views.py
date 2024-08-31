@@ -4,9 +4,11 @@ from rest_framework.filters import OrderingFilter
 from .models import Campaigns,Review,Creator,CreatorRequest
 from .serializer import CampaignSerializer,ReviewSerializer,CreatorSerializer,CreatorRequestSerializer
 from rest_framework import viewsets,status
+from django.http import JsonResponse
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404, redirect
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.exceptions import ValidationError
@@ -28,6 +30,24 @@ class CampaignView(viewsets.ModelViewSet):
             raise ValidationError("Creator profile not found for the current user.")
         
         serializer.save(creator=creator)
+        
+        
+def activate_campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaigns, id=campaign_id)
+    print(f"Campaign Title: {campaign.title}")
+    print(f"Current Status: {campaign.status}")
+    if campaign.status == 'pending':
+        campaign.status = 'active'
+        campaign.save()
+        print(f"Updated Status: {campaign.status}")
+        email_subject = 'Your Campaign is Now Active'
+        email_body=render_to_string('campaign_activation_email.html', {'user': campaign.creator.user, 'campaign': campaign})
+        email = EmailMultiAlternatives(email_subject, '' ,to=[campaign.creator.user.email])
+        email.attach_alternative(email_body, "text/html")
+        email.send()
+        return JsonResponse({"message": "Campaign status updated successfully"})
+    else:
+        return JsonResponse({"message": "Campaign is not in pending status"}, status=400)
 
     
         

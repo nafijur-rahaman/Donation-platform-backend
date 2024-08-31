@@ -29,8 +29,7 @@ class OrderView(viewsets.ModelViewSet):
 
 
 class InitiatePaymentView(APIView):
-    permission_classes = [IsAuthenticated]
-
+    
     def post(self, request, *args, **kwargs):
         data = request.data  # Use request.data for JSON payload
         amount = data.get('amount')
@@ -40,22 +39,29 @@ class InitiatePaymentView(APIView):
         cus_postcode = data.get('cus_postcode')
         campaign_id = data.get('campaign_id')
         order_id = str(uuid.uuid4())  # Generate a unique order ID
-        
-        
-        # if not campaign_id:
-        #     return JsonResponse({'error': 'Campaign ID is missing'}, status=400)
-     # Get the campaign
+
+        # Get the campaign
         try:
             campaign = Campaigns.objects.get(id=campaign_id)
         except Campaigns.DoesNotExist:
-        # Return a dictionary with a message
             return JsonResponse({'error': f'Campaign with id {cus_city} does not exist'}, status=400)
-    
-        
-        
-       # Create an order
+
+        # Check if the user is authenticated
+        if request.user.is_authenticated:
+            user = request.user
+            cus_name = user.username
+            cus_email = user.email
+        else:
+          
+            cus_name = "Anonymous"
+            cus_email = ""  
+            if not all([cus_phone, cus_add1, cus_city, cus_postcode]):
+                return JsonResponse({'error': 'Missing customer details for anonymous user'}, status=400)
+            user = None
+
+        # Create an order
         order = Order.objects.create(
-            user=request.user,
+            user=user,
             campaign=campaign,
             amount=amount,
             transaction_id=order_id,
@@ -71,8 +77,8 @@ class InitiatePaymentView(APIView):
             'success_url': 'http://127.0.0.1:8000/api/transactions/payment-success/',
             'fail_url': 'http://127.0.0.1:8000/api/transactions/payment-fail/',
             'cancel_url': 'http://127.0.0.1:8000/api/transactions/payment-cancel/',
-            'cus_name': request.user.username,
-            'cus_email': request.user.email,
+            'cus_name': cus_name,
+            'cus_email': cus_email,
             'cus_phone': cus_phone,
             'cus_add1': cus_add1,
             'cus_city': cus_city,

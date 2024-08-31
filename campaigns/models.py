@@ -66,6 +66,7 @@ TYPE_CHOICES = [
     
 STATUS_CHOICES = [
         ('active', 'Active'),
+        ('pending','Pending'),
         ('completed', 'Completed'),
         ('canceled', 'Canceled'),
     ]
@@ -79,7 +80,7 @@ class Campaigns(models.Model):
     location=models.CharField(max_length=200)
     deadline=models.DateField()
     type=models.CharField(choices=TYPE_CHOICES,max_length=20)
-    status=models.CharField(choices=STATUS_CHOICES,max_length=20,default='active')
+    status=models.CharField(choices=STATUS_CHOICES,max_length=20,default='Pending')
     created_at=models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
