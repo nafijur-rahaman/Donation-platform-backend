@@ -9,7 +9,7 @@ from .serializers import NotificationSerializer
 class NotificationView(viewsets.ModelViewSet):
     queryset=Notification.objects.all()
     serializer_class = NotificationSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
 
 
 @api_view(['POST'])

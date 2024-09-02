@@ -8,9 +8,12 @@ class CreatorSerializer(serializers.ModelSerializer):
         fields='__all__'
         
 class CreatorRequestSerializer(serializers.ModelSerializer):
+    requester_name = serializers.SerializerMethodField()
     class Meta:
         model = CreatorRequest
         fields = '__all__'
+    def get_requester_name(self, obj):
+        return f"{obj.user.first_name} {obj.user.last_name}"
                
 class CampaignSerializer(serializers.ModelSerializer):
     creator_name = serializers.SerializerMethodField()

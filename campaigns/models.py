@@ -68,7 +68,6 @@ STATUS_CHOICES = [
         ('active', 'Active'),
         ('pending','Pending'),
         ('completed', 'Completed'),
-        ('canceled', 'Canceled'),
     ]
 class Campaigns(models.Model):
     creator=models.ForeignKey(Creator,on_delete=models.CASCADE)
@@ -96,6 +95,7 @@ STAR_CHOICES = [
     
 class Review(models.Model):
     reviewer=models.ForeignKey(User,on_delete=models.CASCADE)
+    campaign=models.ForeignKey(Campaigns,on_delete=models.CASCADE)
     comments=models.TextField(max_length=200)
     created=models.DateField(auto_now_add=True)
     rating=models.CharField(choices=STAR_CHOICES,max_length=20)

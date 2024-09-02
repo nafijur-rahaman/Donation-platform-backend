@@ -32,31 +32,32 @@ class CampaignView(viewsets.ModelViewSet):
         serializer.save(creator=creator)
         
         
-def activate_campaign(request, campaign_id):
-    campaign = get_object_or_404(Campaigns, id=campaign_id)
-    print(f"Campaign Title: {campaign.title}")
-    print(f"Current Status: {campaign.status}")
-    if campaign.status == 'pending':
-        campaign.status = 'active'
-        campaign.save()
-        print(f"Updated Status: {campaign.status}")
-        email_subject = 'Your Campaign is Now Active'
-        email_body=render_to_string('campaign_activation_email.html', {'user': campaign.creator.user, 'campaign': campaign})
-        email = EmailMultiAlternatives(email_subject, '' ,to=[campaign.creator.user.email])
-        email.attach_alternative(email_body, "text/html")
-        email.send()
-        return JsonResponse({"message": "Campaign status updated successfully"})
-    else:
-        return JsonResponse({"message": "Campaign is not in pending status"}, status=400)
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        previous_status = instance.status
+
+        response = super().update(request, *args, **kwargs)
+        instance.refresh_from_db()
+
+        if instance.status == 'active' and previous_status != 'active':
+            email_subject = 'Your Campaign is Now Active'
+            email_body = render_to_string('campaign_activation_email.html', {'user': instance.creator.user, 'campaign':  instance})
+            email = EmailMultiAlternatives(email_subject, '', to=[instance.creator.user.email])
+            email.attach_alternative(email_body, "text/html")
+            email.send()
+
+        return response
+
 
     
         
 class ReviewView(viewsets.ModelViewSet):
     queryset=Review.objects.all()
     serializer_class=ReviewSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields=['campaign']
     
-    def perform_create(self, serializer):
-        serializer.save(reviewer=self.request.user)
+ 
         
         
         

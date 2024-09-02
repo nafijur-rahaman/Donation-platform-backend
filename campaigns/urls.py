@@ -11,5 +11,5 @@ router.register('creator-request',CreatorRequestView)
 
 urlpatterns = [
     path('',include(router.urls)),
-    path('activate/<int:campaign_id>/', activate_campaign, name='activate_campaign'),
+  
 ]
