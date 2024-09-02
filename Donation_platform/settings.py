@@ -148,14 +148,14 @@ REST_FRAMEWORK = {
 #onrender csrf permission
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5500",
-    'http://127.0.0.1:8000'
-    'https://donation-platform.netlify.app/',
+    'http://127.0.0.1:8000',
+    'https://donation-platform.netlify.app',
     'https://donation-platform-backend-rmqk.onrender.com',
     
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500", 
-    "https://donation-platform.netlify.app/",
+    "https://donation-platform.netlify.app",
 ]
 CORS_ALLOW_HEADERS = [
     'authorization',
