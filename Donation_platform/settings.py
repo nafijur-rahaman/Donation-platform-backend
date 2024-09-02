@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 import environ
 
@@ -90,11 +91,20 @@ WSGI_APPLICATION = 'Donation_platform.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://donationplatform_user:zWSjqIjUn0G2Fzrl6k9JtNP45nNpHIBg@dpg-cratctdds78s73d9tmjg-a.oregon-postgres.render.com/donationplatform',
+        conn_max_age=600
+    )
 }
 
 
@@ -137,12 +147,13 @@ REST_FRAMEWORK = {
 
 #onrender csrf permission
 CSRF_TRUSTED_ORIGINS = [
+    'https://donation-platform-backend-rmqk.onrender.com',
     "http://127.0.0.1:5500",
     'http://127.0.0.1:8000',
-    'http://localhost:8000',
+    
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500",  # Your frontend URL
+    "http://127.0.0.1:5500", 
     "https://your-production-url.com",
 ]
 CORS_ALLOW_HEADERS = [

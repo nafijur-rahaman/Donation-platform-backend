@@ -1,4 +1,6 @@
 asgiref
+certifi
+charset-normalizer
 crispy-bootstrap5
 distlib
 dj-database-url
@@ -10,6 +12,7 @@ django-environ
 django-filter
 djangorestframework
 filelock
+idna
 keyboard
 Markdown
 MouseInfo
@@ -24,8 +27,12 @@ PyGetWindow
 PyMsgBox
 pyperclip
 PyRect
+PyScreeze
 pytweening
+requests
 sqlparse
+sslcommerz-lib
 typing_extensions
 tzdata
+urllib3
 virtualenv
