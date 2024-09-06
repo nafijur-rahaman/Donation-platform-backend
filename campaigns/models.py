@@ -67,6 +67,7 @@ TYPE_CHOICES = [
 STATUS_CHOICES = [
         ('active', 'Active'),
         ('pending','Pending'),
+        ('cancel','Canceled'),
         ('completed', 'Completed'),
     ]
 class Campaigns(models.Model):
