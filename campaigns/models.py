@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 from rest_framework.response import Response
+from cloudinary.models import CloudinaryField
 # Create your models here.
 STATUS_CHOICES1 = [
         ('pending', 'Pending'),
@@ -73,7 +74,7 @@ STATUS_CHOICES = [
 class Campaigns(models.Model):
     creator=models.ForeignKey(Creator,on_delete=models.CASCADE)
     title=models.CharField(max_length=200)
-    image=models.ImageField(upload_to='campaigns/',default='dummyimage.jpg')
+    image = CloudinaryField('image', default='placeholder_image_public_id')
     description=models.TextField(blank=True,null=True)
     goal_amount=models.DecimalField(max_digits=12,decimal_places=2)
     fund_raised=models.DecimalField(max_digits=12,decimal_places=2,default=0)

@@ -231,8 +231,20 @@ EMAIL_HOST_USER = env("EMAIL")
 EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
 
 # cloudirnary setup
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env("CLOUD_NAME"),  
-    'API_KEY': env("API_KEY"),
-    'API_SECRET': env("API_SECRET_KEY"),
-}
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': ,  
+#     'api_key': 
+#     'API_SECRET': ,
+# }
+
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+# Cloudinary configuration
+cloudinary.config(
+    cloud_name=env("CLOUD_NAME"),
+    api_key=env("API_KEY"),
+    api_secret=env("API_SECRET_KEY"),
+)
