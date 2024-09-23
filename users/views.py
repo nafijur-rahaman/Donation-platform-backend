@@ -35,7 +35,7 @@ class UserRegistrationView(generics.CreateAPIView):
         user=serializer.save()
         token=default_token_generator.make_token(user)
         uid=urlsafe_base64_encode(force_bytes(user.pk))
-        confirm_link=f"https://donation-platform-backend-rmqk.onrender.com/api/users/activate/{uid}/{token}/"
+        confirm_link=f"https://donation-platform-backend-psi.vercel.app/api/users/activate/{uid}/{token}/"
         email_subject="Confrim You Registration"
         email_body=render_to_string('confirm_email.html',{'confirm_link':confirm_link})
         email=EmailMultiAlternatives(email_subject,'',to=[user.email])
