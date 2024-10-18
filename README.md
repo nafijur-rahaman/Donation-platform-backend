@@ -8,9 +8,9 @@ This is the backend service for a donation platform that manages user accounts, 
 ## Features
 
 - User Authentication: Secure registration, login, and role-based access control (donors, campaign organizers, admins)
-- Campaign Management: Create, update, and manage donation campaigns with goals, descriptions, and progress tracking.
+- Campaign Management: Create, update, filter and manage donation campaigns with goals, descriptions, and progress tracking.
 - Payment Integration: Securely process donations via  payment gateways (e.g., SSLCommerz).
-- Donation Tracking: Track donation history, and provide real-time campaign updates
+- Donation Tracking: Track donation history, filter and provide real-time campaign updates
 - Scalable API: Built to handle high transaction volumes and user activity.
 
 
@@ -85,28 +85,32 @@ python manage.py runserver
 ## Api endpoint
 #### User Authentication:
 
-- POST /api/register/ – Register a new user
+- POST https://donation-platform-backend-psi.vercel.app/api/users/register/ – Register a new user
 
-- POST /api/login/ – Log in a user
+- POST https://donation-platform-backend-psi.vercel.app/api/users/login/ – Log in a user
 
-- POST /api/logout/ – Log out a user
+- POST https://donation-platform-backend-psi.vercel.app/api/manager/login/ – Log in admin
+
+- GET https://donation-platform-backend-psi.vercel.app/api/users/logout/ – Log out a user
+  
+- GET https://donation-platform-backend-psi.vercel.app/api/manager/logout/ – Log out admin
 #### Campaign Management:
 
-- GET /api/campaigns/ – List all campaigns
+- GET https://donation-platform-backend-psi.vercel.app/api/campaign/list/ – List all campaigns
 
-- POST /api/campaigns/create/ – Create a new campaign
+- POST https://donation-platform-backend-psi.vercel.app/api/campaign/list/ – Create a new campaign
 
-- PUT /api/campaigns/update/<id>/ – Update a campaign
+- PUT https://donation-platform-backend-psi.vercel.app/api/campaign/list/campaignId/ – Update a campaign
 
-- DELETE /api/campaigns/delete/<id>/ – Delete a campaign
+- DELETE https://donation-platform-backend-psi.vercel.app/api/campaign/list/campaignId/ – Delete a campaign
 
 #### Donation Management:
 
-- POST /api/donations/ – Process a donation
+- POST https://donation-platform-backend-psi.vercel.app/api/transactions/initiate-payment/ – Process a donation
 
-- GET /api/donations/history/ – View donation history
+- GET https://donation-platform-backend-psi.vercel.app/api/transactions/list/ – View donation history
 
 ## Support
 
-For support, email tanjidnafis@.com 
+For support, email tanjidnafis@gmail.com 
 
