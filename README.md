@@ -131,35 +131,56 @@ python manage.py runserver
 - **ManagerModel**: Stores information about managers associated with user accounts.
 
 
-## Api endpoint
-#### User Authentication:
+## API Endpoints
 
-- POST https://donation-platform-backend-psi.vercel.app/api/users/register/ – Register a new user
+### User Authentication
 
-- POST https://donation-platform-backend-psi.vercel.app/api/users/login/ – Log in a user
-
-- POST https://donation-platform-backend-psi.vercel.app/api/manager/login/ – Log in admin
-
-- GET https://donation-platform-backend-psi.vercel.app/api/users/logout/ – Log out a user
+- **Register a New User**  
+  `POST` [https://donation-platform-backend-psi.vercel.app/api/users/register/](https://donation-platform-backend-psi.vercel.app/api/users/register/)
   
-- GET https://donation-platform-backend-psi.vercel.app/api/manager/logout/ – Log out admin
-#### Campaign Management:
+- **Log in a User**  
+  `POST` [https://donation-platform-backend-psi.vercel.app/api/users/login/](https://donation-platform-backend-psi.vercel.app/api/users/login/)
+  
+- **Log in Admin**  
+  `POST` [https://donation-platform-backend-psi.vercel.app/api/manager/login/](https://donation-platform-backend-psi.vercel.app/api/manager/login/)
+  
+- **Log out a User**  
+  `GET` [https://donation-platform-backend-psi.vercel.app/api/users/logout/](https://donation-platform-backend-psi.vercel.app/api/users/logout/)
+  
+- **Log out Admin**  
+  `GET` [https://donation-platform-backend-psi.vercel.app/api/manager/logout/](https://donation-platform-backend-psi.vercel.app/api/manager/logout/)
 
-- GET https://donation-platform-backend-psi.vercel.app/api/campaign/list/ – List all campaigns
+### Campaign Management
 
-- POST https://donation-platform-backend-psi.vercel.app/api/campaign/list/ – Create a new campaign
+- **List All Campaigns**  
+  `GET` [https://donation-platform-backend-psi.vercel.app/api/campaign/list/](https://donation-platform-backend-psi.vercel.app/api/campaign/list/)
+  
+- **Create a New Campaign**  
+  `POST` [https://donation-platform-backend-psi.vercel.app/api/campaign/list/](https://donation-platform-backend-psi.vercel.app/api/campaign/list/)
+  
+- **Update a Campaign**  
+  `PUT` [https://donation-platform-backend-psi.vercel.app/api/campaign/list/campaignId/](https://donation-platform-backend-psi.vercel.app/api/campaign/list/campaignId/)
+  
+- **Delete a Campaign**  
+  `DELETE` [https://donation-platform-backend-psi.vercel.app/api/campaign/list/campaignId/](https://donation-platform-backend-psi.vercel.app/api/campaign/list/campaignId/)
 
-- PUT https://donation-platform-backend-psi.vercel.app/api/campaign/list/campaignId/ – Update a campaign
+### Donation Management
 
-- DELETE https://donation-platform-backend-psi.vercel.app/api/campaign/list/campaignId/ – Delete a campaign
+- **Process a Donation**  
+  `POST` [https://donation-platform-backend-psi.vercel.app/api/transactions/initiate-payment/](https://donation-platform-backend-psi.vercel.app/api/transactions/initiate-payment/)
+  
+- **View Donation History**  
+  `GET` [https://donation-platform-backend-psi.vercel.app/api/transactions/list/](https://donation-platform-backend-psi.vercel.app/api/transactions/list/)
 
-#### Donation Management:
+### Notes
 
-- POST https://donation-platform-backend-psi.vercel.app/api/transactions/initiate-payment/ – Process a donation
+- Replace `user_id` and `tuitionId` in the URLs with the actual user or tuition post ID as required.
+- Ensure you handle authentication tokens properly in your requests.
 
-- GET https://donation-platform-backend-psi.vercel.app/api/transactions/list/ – View donation history
 
-## Support
+## Contact
 
-For support, email tanjidnafis@gmail.com 
+For inquiries or support, please contact:
+- **Project Developer**: Md. Nafijur Rahaman
+- **Email**: tanjidnafis@gmail.com
 
