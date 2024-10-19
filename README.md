@@ -174,7 +174,7 @@ python manage.py runserver
 
 ### Notes
 
-- Replace `user_id` and `tuitionId` in the URLs with the actual user or tuition post ID as required.
+- Replace `user_id` and `campaignId` in the URLs with the actual user or tuition post ID as required.
 - Ensure you handle authentication tokens properly in your requests.
 
 
