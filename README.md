@@ -82,6 +82,55 @@ Start the development server:
 python manage.py runserver
 ```
 
+## Models
+
+### User Model
+
+- **email**: `EmailField` (unique=True)
+- **image**: `CloudinaryField` (default='dummyimage.jpg')
+- **profession**: `CharField` (max_length=100, default="Software Engineer")
+- **phone_number**: `CharField` (max_length=11, blank=True, null=True)
+- **bio**: `TextField` (blank=True)
+- **status**: `CharField` (max_length=30, choices=STATUS_CHOICES, default="active")
+- **address**: `CharField` (max_length=200, blank=True, null=True)
+- **created**: `DateField` (auto_now_add=True, blank=True, null=True)
+
+### Campaigns Model
+
+- **creator**: `ForeignKey` to `Creator`
+- **title**: `CharField` (max_length=200)
+- **image**: `CloudinaryField` (default='placeholder_image_public_id')
+- **description**: `TextField` (blank=True, null=True)
+- **goal_amount**: `DecimalField` (max_digits=12, decimal_places=2)
+- **fund_raised**: `DecimalField` (max_digits=12, decimal_places=2, default=0)
+- **location**: `CharField` (max_length=200)
+- **deadline**: `DateField`
+- **type**: `CharField` (choices=TYPE_CHOICES, max_length=20)
+- **status**: `CharField` (choices=STATUS_CHOICES, default='Pending')
+- **created_at**: `DateTimeField` (auto_now_add=True)
+
+### CreatorRequest Model
+
+- **user**: `ForeignKey` to `User`
+- **organization**: `CharField` (max_length=200, blank=True, null=True)
+- **experience_years**: `PositiveIntegerField` (default=0)
+- **service_areas**: `TextField` (blank=True, null=True)
+- **message**: `TextField`
+- **status**: `CharField` (max_length=10, choices=STATUS_CHOICES1, default='pending')
+
+### ManagerModel
+
+- **user**: `ForeignKey` to `User`
+- **designation**: `CharField` (max_length=100, default="manager")
+
+## Database Schema
+
+- **Users**: Stores information for all users, including creators and managers, linked to Django’s `User` model.
+- **Campaigns**: Contains data related to fundraising campaigns created by users.
+- **CreatorRequests**: Stores requests made by users to become creators on the platform.
+- **ManagerModel**: Stores information about managers associated with user accounts.
+
+
 ## Api endpoint
 #### User Authentication:
 
