@@ -176,6 +176,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500", 
     "https://donation-platform.netlify.app",
+    "https://donation-platform-backend-psi.vercel.app",
 ]
 CORS_ALLOW_HEADERS = [
     'authorization',
@@ -204,6 +205,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT=BASE_DIR / 'staticfiles'
 MEDIA_URL = f'https://res.cloudinary.com/{env("CLOUD_NAME")}/'
+
+
 
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
