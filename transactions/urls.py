@@ -3,7 +3,7 @@ from .views import InitiatePaymentView, payment_success, payment_fail, payment_c
 from rest_framework.routers import DefaultRouter
 
 router=DefaultRouter()
-router.register("list",OrderView)
+router.register("list",OrderView,basename='order')
 
 
 urlpatterns = [
