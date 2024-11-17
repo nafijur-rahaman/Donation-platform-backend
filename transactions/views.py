@@ -9,8 +9,6 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from .models import Order
-from django_filters import rest_framework as filters
-from django.shortcuts import get_object_or_404
 from campaigns.models import Campaigns
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
@@ -21,47 +19,11 @@ from rest_framework.permissions import IsAuthenticated
 from django.views.decorators.csrf import csrf_exempt
 
 
-
-class OrderFilter(filters.FilterSet):
-    class Meta:
-        model = Order
-        fields = ['user', 'campaign']
-
-class OrderView(viewsets.ViewSet):
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = OrderFilter
-
-    def list(self, request):
-        queryset = Order.objects.all()
-        filtered_queryset = DjangoFilterBackend().filter_queryset(request, queryset, self)
-        serializer = OrderSerializer(filtered_queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def create(self, request):
-        serializer = OrderSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def retrieve(self, request, pk=None):
-        order = get_object_or_404(Order, pk=pk)
-        serializer = OrderSerializer(order)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def update(self, request, pk=None):
-        order = get_object_or_404(Order, pk=pk)
-        serializer = OrderSerializer(order, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def destroy(self, request, pk=None):
-        order = get_object_or_404(Order, pk=pk)
-        order.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
+class OrderView(viewsets.ModelViewSet):
+    queryset=Order.objects.all()
+    serializer_class=OrderSerializer
+    filter_backends=[DjangoFilterBackend]
+    filterset_fields=['user','campaign']
     
 
 
