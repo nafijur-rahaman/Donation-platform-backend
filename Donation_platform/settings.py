@@ -29,7 +29,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app","http://127.0.0.1:5500"]
+ALLOWED_HOSTS = ["127.0.0.1", 'localhost', '0.0.0.0', ".vercel.app","http://127.0.0.1:5500"]
 
 
 # Application definition

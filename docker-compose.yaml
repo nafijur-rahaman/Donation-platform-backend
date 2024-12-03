@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres.fhdltlxcfhiakcgopxaz
+      POSTGRES_PASSWORD: SKf6Ky7k*Brf8Mh
+      POSTGRES_HOST: aws-0-ap-southeast-1.pooler.supabase.com
+      POSTGRES_PORT: 6543
